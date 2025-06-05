@@ -2,6 +2,8 @@ public class Principal {
 
     public static void main(String[] args) {
         Menu menu = new Menu();
-        menu.iniciar();
+        Curso curso = menu.iniciar();
+
+        menu.menuInicial(curso);
     }
 }

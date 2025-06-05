@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public class Curso {
 
-	private ArrayList alunos;
+	private ArrayList alunos = [];
 
-	private ArrayList professores;
+	private ArrayList professores = [];
 
-	private ArrayList diciplinas;
+	private ArrayList diciplinas = [];
 
 	private Diciplina diciplinas = [];
 
