@@ -4,8 +4,20 @@ public class Menu {
 		return null;
 	}
 
-	public int opareções() {
-		return 0;
+	public void menuInicial() {
+		return;
 	}
+
+	public void menuALuno() {return;}
+
+	public void menuProfessor() {return;}
+
+	public void menuDiciplina() {return;}
+
+	public void menuTurma() {return;}
+
+	public void menuTurmaGeral() {return;}
+
+	public void menuUsuario() {return;}
 
 }
