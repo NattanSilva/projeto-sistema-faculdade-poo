@@ -4,11 +4,15 @@ public class TurmaGeral {
 
 	private ArrayList turmas;
 
-	public void cadastrarTurma(Turma tuma) {
-
+	public Turma cadastrarTurma(Turma tuma) {
+		return null;
 	}
 
 	public void deletarTurma(int turmaId) {
+
+	}
+
+	public void listarTurmas() {
 
 	}
 

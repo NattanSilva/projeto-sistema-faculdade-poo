@@ -6,20 +6,24 @@ public abstract class Usuario {
 
 	private String cpf;
 
-	public void cadastrar() {
-
-	}
-
-	public void cadastrarAluno(Aluno aluno) {
-
-	}
-
-	public void removerAluno(String rgm) {
+	public void cadastrar(String nome, String cpf, String email) {
 
 	}
 
 	public void listarMeusAlunos() {
 
+	}
+
+	public Professor atualizar(Professor novosDados) {
+		return null;
+	}
+
+	public void logar(String cpf) {
+
+	}
+
+	public Professor buscar(int professorId) {
+		return null;
 	}
 
 }

@@ -12,4 +12,16 @@ public class Turma {
 
 	private int id;
 
+	public void adicionarAluno(Aluno aluno) {
+
+	}
+
+	public void listarAlunos() {
+
+	}
+
+	public void removerAluno(int alunoId) {
+
+	}
+
 }
