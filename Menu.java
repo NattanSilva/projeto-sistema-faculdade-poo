@@ -59,12 +59,11 @@ public class Menu {
 		System.out.println("Bem vindo, " + professor.nome + "!");
 		System.out.println("Menu Geral");
 		System.out.println("1 - Menu Aluno");
-		System.out.println("2 - Menu Professor");
+		System.out.println("2 - Menu Usuário");
 		System.out.println("3 - Menu Diciplina");
 		System.out.println("4 - Menu Turma");
 		System.out.println("5 - Menu Turma Geral");
-		System.out.println("6 - Menu Usuário");
-		System.out.println("7 - Menu Curso");
+		System.out.println("6 - Menu Curso");
 		System.out.println("0 - Sair");
 		System.out.print("Escolha uma opção: ");
 		int opcao = teclado.nextInt();
@@ -86,9 +85,6 @@ public class Menu {
 					this.menuTurmaGeral(curso, professor);
 					break;
 			case 6:
-				this.menuUsuario(curso, professor);
-				break;
-			case 7:
 				this.menuCurso(curso, professor);
 				break;
 			case 0:
@@ -186,9 +182,9 @@ public class Menu {
 		Scanner teclado = new Scanner(System.in);
 		String cpf;
 
-		System.out.println("Menu Professor");
+		System.out.println("Menu Usuário");
 		System.out.println("1 - Buscar Professor");
-		System.out.println("2 - Atualizar Professor");
+		System.out.println("2 - Atualizar Usuário");
 		System.out.println("3 - Listar Meus Alunos");
 		System.out.println("0 - Sair");
 		System.out.print("Escolha uma opção: ");
@@ -240,8 +236,6 @@ public class Menu {
 	}
 
 	public void menuTurmaGeral(Curso curso, Professor usuario) {return;}
-
-	public void menuUsuario(Curso curso, Professor usuario) {return;}
 
 	public void menuCurso(Curso curso, Professor usuario) {
 		Scanner teclado = new Scanner(System.in);
