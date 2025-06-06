@@ -3,7 +3,7 @@ public class Professor extends Usuario {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
-        this.id = curso.tamanhoAlunos();
+        this.id = curso.tamanhoAlunos() + 1;
 
         curso.adicionarProfessor(this);
 

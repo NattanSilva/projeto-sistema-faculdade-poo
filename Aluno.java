@@ -1,25 +1,43 @@
 public class Aluno {
 
-	private String rgm;
+	private int rgm;
 
-	private String nome;
+	public String nome;
 
-	private String email;
+	public String email;
 
-	public Aluno cadastrar(int rgm, String nome, String email) {
-		return null;
+	public Aluno cadastrar(String nome, String email, Curso curso) {
+		this.rgm = curso.tamanhoAlunos() + 1;
+		this.nome = nome;
+		this.email = email;
+
+		if(curso.buscarAluno(email) != null) {
+			return null;
+		}
+
+		curso.adicionarAluno(this);
+		System.out.println("Aluno [" + this.rgm + " - " + this.nome + "] cadastrado com sucesso!");
+		return this;
 	}
 
-	public Aluno buscar(int idAluno) {
-		return null;
+	public Aluno buscar(String email, Curso curso) {
+		return curso.buscarAluno(email);
 	}
 
-	public void deletar(int alunoId) {
+	public void deletar(String email, Curso curso) {
+		curso.deletarAluno(email);
+
+		System.out.println("Aluno "+ email + " deletado com sucesso!");
 
 	}
 
-	public Aluno atualizar(int alunoId, Aluno dadosNovos) {
-		return null;
+	public Aluno atualizar(String email, String novoEmail, String novoNome, Curso curso) {
+		Aluno aluno = curso.buscarAluno(email);
+
+		aluno.email = novoEmail;
+		aluno.nome = novoNome;
+
+		return aluno;
 	}
 
 }

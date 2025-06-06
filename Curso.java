@@ -9,7 +9,7 @@ public class Curso {
 	private ArrayList<Diciplina> diciplinas = new ArrayList<Diciplina>();
 
 	public void adicionarAluno(Aluno aluno) {
-
+		this.alunos.add(aluno);
 	}
 
 	public void adicionarProfessor(Professor professor) {
@@ -54,14 +54,33 @@ public class Curso {
 	public void listarTodasDiciplinas() {
 
 	}
-	public Professor buscarProfessor(String cpf) {
-        for (Professor professor : professores) {
-            if (professor.cpf.equals(cpf)) {
+	public Professor buscarProfessor(String cpfBuscado) {
+		if(cpfBuscado ==  null) return null;
+
+        for (Professor professor : this.professores) {
+            if (professor.cpf.equalsIgnoreCase(cpfBuscado)) {
                 return professor;
             }
         }
 
 		return null;
 	};
+
+	public Aluno buscarAluno(String emailBuscado) {
+		if(emailBuscado ==  null) return null;
+
+		for (Aluno aluno : this.alunos) {
+			if (aluno.email.equalsIgnoreCase(emailBuscado)) {
+				return aluno;
+			}
+		}
+
+		return null;
+	};
+
+	public void deletarAluno(String emailBuscado) {
+		this.alunos.remove(buscarAluno(emailBuscado));
+	}
+
 
 }
