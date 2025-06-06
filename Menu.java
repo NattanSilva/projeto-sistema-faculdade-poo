@@ -71,10 +71,10 @@ public class Menu {
 
 		switch (opcao) {
 			case 1:
-				this.menuAluno(curso);
+				this.menuAluno(curso, professor);
 				break;
 			case 2:
-					this.menuProfessor(curso);
+					this.menuProfessor(curso, professor);
 					break;
 			case 3:
 				this.menuDiciplina(curso);
@@ -93,6 +93,7 @@ public class Menu {
 				break;
 			case 0:
 				System.out.println("Saindo...");
+				this.menuInicial(curso);
 				break;
 			default:
 				System.out.println("Opção inválida!");
@@ -101,7 +102,7 @@ public class Menu {
 		}
 	}
 
-	public void menuAluno(Curso curso) {
+	public void menuAluno(Curso curso, Professor professor) {
 		Scanner teclado = new Scanner(System.in);
 		String nome , email;
 		Aluno aluno = new Aluno();
@@ -125,14 +126,14 @@ public class Menu {
 
 				if(novoAluno == null) {
 					System.out.println("Email " + email + " já cadastrado!");
-					this.menuAluno(curso);
+					this.menuAluno(curso, professor);
 					break;
 				}
 
-				this.menuAluno(curso);
+				this.menuAluno(curso, professor);
 				break;
 			case 2:
-				System.out.println("Digite o email do aluno: ");
+				System.out.println("Digite o email do aluno buscado: ");
 				email = teclado.next();
 				Aluno alunoBuscado = aluno.buscar(email, curso);
 
@@ -143,7 +144,7 @@ public class Menu {
 					System.out.println("[" + alunoBuscado.nome + " - " + alunoBuscado.email + "]");
 				}
 
-				this.menuAluno(curso);
+				this.menuAluno(curso, professor);
 				break;
 			case 3:
 				System.out.println("Digite o email do aluno: ");
@@ -151,7 +152,7 @@ public class Menu {
 
 				if(aluno.buscar(email, curso) == null) {
 					System.out.println("Aluno não encontrado!");
-					this.menuAluno(curso);
+					this.menuAluno(curso, professor);
 					break;
 				}
 
@@ -162,22 +163,76 @@ public class Menu {
 				Aluno novosDados = aluno.atualizar(email, novoEmail, novoNome, curso);
 
 				System.out.println("[" + novosDados.nome + " - " + novosDados.email + "]");
-				this.menuAluno(curso);
+				this.menuAluno(curso, professor);
 				break;
 			case 4:
 				System.out.println("Digite o email do aluno: ");
 				email = teclado.next();
 				aluno.deletar(email, curso);
-				this.menuAluno(curso);
+				this.menuAluno(curso, professor);
+				break;
+			case 0:
+				System.out.println("Saindo...");
+				menuSecundario(curso, professor);
 				break;
 			default:
 				System.out.println("Opção inválida!");
-				this.menuAluno(curso);
+				this.menuAluno(curso, professor);
 				break;
 		}
 	}
 
-	public void menuProfessor(Curso curso) {return;}
+	public void menuProfessor(Curso curso, Professor usuario) {
+		Scanner teclado = new Scanner(System.in);
+		String cpf;
+
+		System.out.println("Menu Professor");
+		System.out.println("1 - Buscar Professor");
+		System.out.println("2 - Atualizar Professor");
+		System.out.println("3 - Listar Meus Alunos");
+		System.out.println("0 - Sair");
+		System.out.print("Escolha uma opção: ");
+		int opcao = teclado.nextInt();
+
+		switch (opcao) {
+			case 1:
+				System.out.println("Digite o cpf do professor: ");
+				cpf = teclado.next();
+				Professor professorBuscado = usuario.buscar(cpf, curso);
+				if(professorBuscado == null) {
+					System.out.println("Professor não encontrado!");
+					this.menuProfessor(curso, usuario);
+					break;
+				}
+
+				System.out.println("Professor: [" + professorBuscado.cpf+ " - " + professorBuscado.nome + " - " + professorBuscado.email + "]");
+				this.menuProfessor(curso, usuario);
+				break;
+			case 2:
+				System.out.println("Digite o novo nome professor: ");
+				String novoNome = teclado.next();
+				System.out.println("Digite o novo email  professor: ");
+				String novoEmail = teclado.next();
+				System.out.println("Digite o novo cpf professor: ");
+				String novoCpf = teclado.next();
+				Professor usuarioAtualizado = usuario.atualizar(novoNome, novoEmail, novoCpf, curso);
+
+				System.out.println("[" + usuarioAtualizado.nome + " - " + usuarioAtualizado.cpf + " - " + usuarioAtualizado.email + "]");
+				this.menuProfessor(curso, usuarioAtualizado);
+				break;
+			case 3:
+				break;
+			case 0:
+				System.out.println("Saindo...");
+				menuSecundario(curso, usuario);
+				break;
+			default:
+					System.out.println("Opção inválida!");
+					this.menuProfessor(curso, usuario);
+					break;
+		}
+
+	}
 
 	public void menuDiciplina(Curso curso) {return;}
 

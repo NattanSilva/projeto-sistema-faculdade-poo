@@ -18,4 +18,19 @@ public class Professor extends Usuario {
 
         return 1;
     }
+
+    public Professor buscar(String cpf, Curso curso) {
+        return curso.buscarProfessor(cpf);
+    }
+
+
+    public Professor atualizar(String novoNome, String novoEmail, String novoCpf, Curso curso) {
+        Professor professor = curso.buscarProfessor(cpf);
+
+        professor.nome = novoNome;
+        professor.email = novoEmail;
+        professor.cpf = novoCpf;
+
+        return professor;
+    }
 }

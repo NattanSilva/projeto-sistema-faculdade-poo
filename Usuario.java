@@ -12,11 +12,11 @@ public abstract class Usuario {
 
 	}
 
-	public void listarMeusAlunos() {
+	public void listarMeusAlunos(Curso curso) {
 
 	}
 
-	public Professor atualizar(Professor novosDados) {
+	public Professor atualizar(String novoNome, String novoEmail, String novoCpf, Curso curso) {
 		return null;
 	}
 
@@ -24,7 +24,7 @@ public abstract class Usuario {
 		return 0;
 	}
 
-	public Professor buscar(int professorId) {
+	public Professor buscar(String cpf, Curso curso) {
 		return null;
 	}
 
