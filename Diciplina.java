@@ -1,6 +1,12 @@
 public class Diciplina {
 
-	private String nome;
+	private int id;
+
+	public String nome;
+
+	public int getId() {
+		return this.id;
+	}
 
 	public Diciplina cadastrar(String nome) {
 		return null;

@@ -77,19 +77,19 @@ public class Menu {
 					this.menuProfessor(curso, professor);
 					break;
 			case 3:
-				this.menuDiciplina(curso);
+				this.menuDiciplina(curso, professor);
 				break;
 			case 4:
-				this.menuTurma(curso);
+				this.menuTurma(curso, professor);
 				break;
 			case 5:
-					this.menuTurmaGeral(curso);
+					this.menuTurmaGeral(curso, professor);
 					break;
 			case 6:
-				this.menuUsuario(curso);
+				this.menuUsuario(curso, professor);
 				break;
 			case 7:
-				this.menuCurso(curso);
+				this.menuCurso(curso, professor);
 				break;
 			case 0:
 				System.out.println("Saindo...");
@@ -234,14 +234,47 @@ public class Menu {
 
 	}
 
-	public void menuDiciplina(Curso curso) {return;}
+	public void menuDiciplina(Curso curso, Professor usuario) {return;}
 
-	public void menuTurma(Curso curso) {return;}
+	public void menuTurma(Curso curso, Professor usuario) {
+	}
 
-	public void menuTurmaGeral(Curso curso) {return;}
+	public void menuTurmaGeral(Curso curso, Professor usuario) {return;}
 
-	public void menuUsuario(Curso curso) {return;}
+	public void menuUsuario(Curso curso, Professor usuario) {return;}
 
-	public void menuCurso(Curso curso) {}
+	public void menuCurso(Curso curso, Professor usuario) {
+		Scanner teclado = new Scanner(System.in);
+
+		System.out.println("Menu Professor");
+		System.out.println("1 - Listar Todos os Professores");
+		System.out.println("2 - Listar Todos os Alunos");
+		System.out.println("3 - Listar Todas as Diciplinas");
+		System.out.println("0 - Sair");
+		System.out.print("Escolha uma opcao: ");
+		int opcao = teclado.nextInt();
+
+		switch (opcao) {
+			case 1:
+				curso.listarTodosProfessores();
+				this.menuCurso(curso, usuario);
+				break;
+			case 2:
+				curso.listarTodosALunos();
+				this.menuCurso(curso, usuario);
+				break;
+			case 3:
+				curso.listarTodasDiciplinas();
+				this.menuCurso(curso, usuario);
+				break;
+			case 0:
+				System.out.println("Saindo...");
+				this.menuSecundario(curso, usuario);
+				break;
+			default:
+				System.out.println("Opção inválida!");
+				this.menuCurso(curso, usuario);
+		}
+	}
 
 }

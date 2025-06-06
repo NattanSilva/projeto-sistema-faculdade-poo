@@ -44,15 +44,33 @@ public class Curso {
 	public void adicionarDiciplina(Diciplina diciplina) {}
 
 	public void listarTodosALunos() {
-
+		if(this.alunos.size() == 0) {
+			System.out.println("Nenhum aluno cadastrado!");
+		} else {
+			for(Aluno aluno: this.alunos) {
+				System.out.println("[" + aluno.getRgm()+ " - " + aluno.nome  + " - " + aluno.email + "]");
+			}
+		}
 	}
 
 	public void listarTodosProfessores() {
-
+		if(this.professores.size() == 0){
+			System.out.println("Nenhum professor cadastrado!");
+		} else {
+			for(Professor professor: this.professores) {
+				System.out.println("[" + professor.id + " - " + professor.nome + " - " + professor.cpf + " - " +  professor.email + "]");
+			}
+		}
 	}
 
 	public void listarTodasDiciplinas() {
+		if(this.diciplinas.size() == 0){
+			System.out.println("Nenhuma diciplina cadastrada!");
+		}
 
+		for(Diciplina diciplina: this.diciplinas) {
+			System.out.println("[" + diciplina.getId() + " - " + diciplina.nome + "]");
+		}
 	}
 	public Professor buscarProfessor(String cpfBuscado) {
 		if(cpfBuscado ==  null) return null;

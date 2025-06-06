@@ -6,6 +6,10 @@ public class Aluno {
 
 	public String email;
 
+	public int getRgm() {
+		return this.rgm;
+	};
+
 	public Aluno cadastrar(String nome, String email, Curso curso) {
 		this.rgm = curso.tamanhoAlunos() + 1;
 		this.nome = nome;
