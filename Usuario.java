@@ -1,12 +1,14 @@
 public abstract class Usuario {
 
-	private String nome;
+	public int id;
 
-	private String email;
+	public String nome;
 
-	private String cpf;
+	public String email;
 
-	public void cadastrar(String nome, String cpf, String email) {
+	public String cpf;
+
+	public void cadastrar(String nome, String cpf, String email, Curso curso) {
 
 	}
 
@@ -18,8 +20,8 @@ public abstract class Usuario {
 		return null;
 	}
 
-	public void logar(String cpf) {
-
+	public int logar(String cpf, Curso curso) {
+		return 0;
 	}
 
 	public Professor buscar(int professorId) {
