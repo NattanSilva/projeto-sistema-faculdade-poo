@@ -33,4 +33,12 @@ public class Professor extends Usuario {
 
         return professor;
     }
+
+    public String getNomeProfessor() {
+        return this.nome;
+    }
+
+    public String getCpfProfessor(){
+        return this.cpf;
+    }
 }

@@ -82,8 +82,8 @@ public class Menu {
 				this.menuTurma(curso, professor);
 				break;
 			case 5:
-					this.menuTurmaGeral(curso, professor);
-					break;
+				this.menuTurmaGeral(curso, professor);
+				break;
 			case 6:
 				this.menuCurso(curso, professor);
 				break;
@@ -230,12 +230,195 @@ public class Menu {
 
 	}
 
-	public void menuDiciplina(Curso curso, Professor usuario) {return;}
+	public void menuDiciplina(Curso curso, Professor usuario) {
+		Scanner teclado = new Scanner(System.in);
+		String nome;
 
-	public void menuTurma(Curso curso, Professor usuario) {
+		System.out.println("Menu Disciplina");
+		System.out.println("1 - Cadastrar Disciplina");
+		System.out.println("2 - Atualizar Disciplina");
+		System.out.println("3 - Remover Disciplina");
+		System.out.println("4 - Listar Disciplinas");
+		System.out.println("0 - Voltar");
+		System.out.print("Escolha uma opção: ");
+		int opcao = teclado.nextInt();
+		teclado.nextLine(); // limpar buffer
+
+		switch (opcao) {
+			case 1:
+				System.out.println("Digite o nome da disciplina: ");
+				nome = teclado.nextLine();
+				curso.getDisciplinaCurso().add(new Disciplina(nome));
+				System.out.println("Disciplina cadastrada com sucesso!");
+				break;
+			case 2:
+				System.out.println("Digite o ID da disciplina: ");
+				int id = teclado.nextInt();
+				teclado.nextLine();
+				for (Disciplina d : curso.getDisciplinaCurso()) {
+					if (d.getCodigoDisciplina() == id) {
+						System.out.println("Digite o novo nome da disciplina: ");
+						d.atualizarDisciplna(teclado.nextLine());
+						System.out.println("Disciplina atualizada.");
+						break;
+					}
+				}
+				break;
+			case 3:
+				System.out.println("Digite o ID da disciplina para remover: ");
+				int idRemover = teclado.nextInt();
+				Disciplina.removerDisciplina(curso, idRemover);
+				System.out.println("Disciplina removida.");
+				break;
+			case 4:
+				System.out.println("Disciplinas cadastradas:");
+				for (Disciplina d : curso.getDisciplinaCurso()) {
+					System.out.println(d);
+				}
+				break;
+			case 0:
+				menuSecundario(curso, usuario);
+				return;
+			default:
+				System.out.println("Opção inválida!");
+		}
+		menuDiciplina(curso, usuario);
 	}
 
-	public void menuTurmaGeral(Curso curso, Professor usuario) {return;}
+
+	public void menuTurma(Curso curso, Professor usuario) {
+		Scanner teclado = new Scanner(System.in);
+
+		System.out.println("Menu Turma");
+		System.out.println("1 - Listar Turmas do Professor");
+		System.out.println("2 - Listar Alunos de uma Turma");
+		System.out.println("3 - Adicionar Aluno em uma Turma");
+		System.out.println("4 - Remover Aluno de uma Turma");
+		System.out.println("0 - Voltar");
+		System.out.print("Escolha uma opção: ");
+		int opcao = teclado.nextInt();
+
+		switch (opcao) {
+			case 1:
+				for (Turma t : curso.getTurmaGeral().getTurmasTurmaGeral()) {
+					if (t.getCpfTurma().cpf.equals(usuario.cpf)) {
+						System.out.println(t);
+					}
+				}
+				break;
+
+			case 2:
+				System.out.println("Digite o ID da turma:");
+				int idListar = teclado.nextInt();
+				for (Turma t : curso.getTurmaGeral().getTurmasTurmaGeral()) {
+					if (t.getCodigoTurma() == idListar &&
+							t.getProfessorTurma().getCpfProfessor().equals(usuario.cpf)) {
+						t.listarAlunosTurma();
+					}
+				}
+				break;
+
+			case 3:
+				System.out.println("Digite o ID da turma:");
+				int idAdd = teclado.nextInt();
+				System.out.println("Digite o RGM do aluno:");
+				int rgmAdd = teclado.nextInt();
+
+				for (Turma t : curso.getTurmaGeral().getTurmasTurmaGeral()) {
+					if (t.getCodigoTurma() == idAdd &&
+							t.getProfessorTurma().getCpfProfessor().equals(usuario.cpf)) {
+
+						Aluno aluno = curso.buscar(rgmAdd);
+						if (aluno != null) {
+							t.adicionarAluno(aluno);
+							System.out.println("Aluno adicionado com sucesso.");
+						} else {
+							System.out.println("Aluno não encontrado.");
+						}
+					}
+				}
+				break;
+
+			case 4:
+				System.out.println("Digite o ID da turma:");
+				int idRemover = teclado.nextInt();
+				System.out.println("Digite o RGM do aluno:");
+				int rgmRemover = teclado.nextInt();
+
+				for (Turma t : curso.getTurmaGeral().getTurmasTurmaGeral()) {
+					if (t.getCodigoTurma() == idRemover &&
+							t.getProfessorTurma().getCpfProfessor().equals(usuario.cpf)) {
+
+						t.removerAluno(rgmRemover);
+						System.out.println("Aluno removido com sucesso (se existia).");
+					}
+				}
+				break;
+
+			case 0:
+				menuSecundario(curso, usuario);
+				return;
+
+			default:
+				System.out.println("Opção inválida!");
+		}
+
+		menuTurma(curso, usuario); // Chamada recursiva para manter o menu ativo
+	}
+
+	public void menuTurmaGeral(Curso curso, Professor usuario) {
+		Scanner teclado = new Scanner(System.in);
+
+		System.out.println("Menu Turma Geral");
+		System.out.println("1 - Criar nova Turma");
+		System.out.println("2 - Deletar Turma");
+		System.out.println("3 - Listar Todas as Turmas");
+		System.out.println("0 - Voltar");
+		System.out.print("Escolha uma opção: ");
+		int opcao = teclado.nextInt();
+
+		switch (opcao) {
+			case 1:
+				System.out.println("ID da disciplina: ");
+				int disciplinaId = teclado.nextInt();
+				Disciplina disc = null;
+
+				for (Disciplina d : curso.getDisciplinaCurso()) {
+					if (d.getCodigoDisciplina() == disciplinaId) {
+						disc = d;
+						break;
+					}
+				}
+
+				if (disc != null) {
+					Turma nova = new Turma(disc, usuario);
+					curso.getTurmaGeral().cadastrarTurmaTurmaGeral(nova);
+					System.out.println("Turma criada com sucesso!");
+				} else {
+					System.out.println("Disciplina não encontrada.");
+				}
+				break;
+
+			case 2:
+				System.out.println("Digite o ID da turma para deletar:");
+				int idRemover = teclado.nextInt();
+				curso.getTurmaGeral().deletarTurmaTurmaGeral(idRemover);
+				System.out.println("Turma removida.");
+				break;
+
+			case 3:
+				curso.getTurmaGeral().listarTurmasTurmaGeral();
+				break;
+
+			case 0:
+				menuSecundario(curso, usuario);
+				return;
+
+			default:
+				System.out.println("Opção inválida!");
+		}
+		menuTurmaGeral(curso, usuario);
+	}
 
 	public void menuCurso(Curso curso, Professor usuario) {
 		Scanner teclado = new Scanner(System.in);

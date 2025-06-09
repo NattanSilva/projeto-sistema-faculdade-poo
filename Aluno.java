@@ -44,4 +44,7 @@ public class Aluno {
 		return aluno;
 	}
 
+	public String getNomeAluno() {
+		return this.nome;
+	}
 }

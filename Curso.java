@@ -1,3 +1,4 @@
+import java.util.AbstractList;
 import java.util.ArrayList;
 
 public class Curso {
@@ -6,7 +7,13 @@ public class Curso {
 
 	private ArrayList<Professor> professores = new ArrayList<Professor>();
 
-	private ArrayList<Diciplina> diciplinas = new ArrayList<Diciplina>();
+	private ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
+
+	private ArrayList<Turma> turma = new ArrayList<>();
+
+	private ArrayList<TurmaGeral> turmaGeral  = new ArrayList<>();
+
+	private TurmaGeral turmaGeralCurso = new TurmaGeral();
 
 	public void adicionarAluno(Aluno aluno) {
 		this.alunos.add(aluno);
@@ -38,10 +45,28 @@ public class Curso {
 	}
 
 	int tamanhoDiciplinas() {
-		return diciplinas.size();
+		return disciplinas.size();
 	}
 
-	public void adicionarDiciplina(Diciplina diciplina) {}
+
+	public ArrayList<Disciplina> getDisciplinaCurso() {
+		return disciplinas;
+	}
+
+	public ArrayList<Turma> getTurmaCurso(){
+		return turma;
+	}
+
+
+	public ArrayList<TurmaGeral> getTurmaGeralCurso(){
+		return this.turmaGeral;
+	}
+
+	public TurmaGeral getTurmaGeral() {
+		return turmaGeralCurso;
+	}
+
+	public void adicionarDiciplina(Disciplina diciplina) {}
 
 	public void listarTodosALunos() {
 		if(this.alunos.size() == 0) {
@@ -64,12 +89,12 @@ public class Curso {
 	}
 
 	public void listarTodasDiciplinas() {
-		if(this.diciplinas.size() == 0){
+		if(this.disciplinas.size() == 0){
 			System.out.println("Nenhuma diciplina cadastrada!");
 		}
 
-		for(Diciplina diciplina: this.diciplinas) {
-			System.out.println("[" + diciplina.getId() + " - " + diciplina.nome + "]");
+		for(Disciplina diciplina: this.disciplinas) {
+			System.out.println("[" + diciplina.getCodigoDisciplina() + " - " + diciplina.nome + "]");
 		}
 	}
 	public Professor buscarProfessor(String cpfBuscado) {
@@ -98,6 +123,16 @@ public class Curso {
 
 	public void deletarAluno(String emailBuscado) {
 		this.alunos.remove(buscarAluno(emailBuscado));
+	}
+
+
+	/// ///////////
+
+	public Aluno buscar(int rgm) {
+		for (Aluno a : alunos) {
+			if (a.getRgm() == rgm) return a;
+		}
+		return null;
 	}
 
 
